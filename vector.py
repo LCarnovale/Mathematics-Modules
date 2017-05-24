@@ -34,6 +34,13 @@ class vector:
     def __getitem__(self, value):
         return self.elements[value]
 
+    def __mult__(self, value):
+        if type(value) in [int, float]:
+            return self.multiply(value)
+        elif type(value) == vector:
+            return None
+
+
     def define(self, other):
         self.elements = other.elements
         self.dim = len(other.elements)
@@ -123,6 +130,10 @@ class vector:
         self.define(self.multiply(scalar))
         return True
 
+    def crossProduct(self, vector):
+        if len(self) != len(vector):
+            print("Non consistent dimensions in cross product.")
+            return False
     def multiply(self, scalar):
         return vector([x * scalar for x in self.elements])
 
